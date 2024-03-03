@@ -1,0 +1,125 @@
+﻿<Window
+    x:Class="General.Apt.App.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:General.Apt.App.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewApp="clr-namespace:General.Apt.App.Views.App"
+    xmlns:viewImageRestoration="clr-namespace:General.Apt.App.Views.Image.Restoration"
+    xmlns:viewVideoInterpolation="clr-namespace:General.Apt.App.Views.Video.Interpolation"
+    xmlns:viewVideoOrganization="clr-namespace:General.Apt.App.Views.Video.Organization"
+    xmlns:viewVideoRestoration="clr-namespace:General.Apt.App.Views.Video.Restoration"
+    Title="{Binding AppTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+    Width="1280"
+    Height="720"
+    MinWidth="900"
+    MinHeight="550"
+    DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+    <Grid Background="#262626">
+        <TabControl
+            Background="#f0f0f0"
+            BorderThickness="0"
+            TabStripPlacement="Left">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Panel">
+                                    <TextBlock
+                                        Width="120"
+                                        FontSize="16"
+                                        FontWeight="Light"
+                                        Foreground="White">
+                                        <ContentPresenter
+                                            Name="ContentSite"
+                                            Margin="20"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            ContentSource="Header">
+                                            <ContentPresenter.ContentTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Header, RelativeSource={RelativeSource AncestorType=TabItem}}" TextWrapping="Wrap" />
+                                                </DataTemplate>
+                                            </ContentPresenter.ContentTemplate>
+                                        </ContentPresenter>
+                                    </TextBlock>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="#595959" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Name="VideoOrganization" Header="视频整理">
+                <viewVideoOrganization:IndexView />
+            </TabItem>
+            <TabItem Name="ImageRestoration" Header="图片放大">
+                <viewImageRestoration:IndexView />
+            </TabItem>
+            <TabItem Name="VideoRestoration" Header="视频放大">
+                <viewVideoRestoration:IndexView />
+            </TabItem>
+            <TabItem Name="VideoInterpolation" Header="视频补帧">
+                <viewVideoInterpolation:IndexView />
+            </TabItem>
+            <TabItem Name="Help" Header="帮助说明">
+                <viewApp:HelpView />
+            </TabItem>
+        </TabControl>
+    </Grid>
+    <!--<Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Border
+            Grid.Column="0"
+            Background="#222222"
+            BorderThickness="1">
+            <ListView
+                Name="ListViewMain"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                ItemsSource="{Binding NavigateSource}"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                SelectedItem="{Binding NavigateItem}">
+                <behaviors:Interaction.Triggers>
+                    <behaviors:EventTrigger EventName="SelectionChanged">
+                        <behaviors:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=ListViewMain}" />
+                    </behaviors:EventTrigger>
+                </behaviors:Interaction.Triggers>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="120">
+                            <TextBlock
+                                Margin="16"
+                                HorizontalAlignment="Center"
+                                FontSize="16"
+                                FontWeight="Light"
+                                Foreground="#EEEEEE"
+                                Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+        <Border
+            Grid.Column="1"
+            Background="#EEEEEE"
+            BorderThickness="1">
+            <Frame
+                Name="FrameMain"
+                NavigationUIVisibility="Hidden"
+                Source="{Binding FrameSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </Border>
+    </Grid>-->
+</Window>
