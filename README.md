@@ -10,6 +10,9 @@
 ## 技术支持：  
 联系方式 [ QQ: 6085398 ] [ Email: Rnchg@Hotmail.com ] [ B站; 风轻云也净 ]。  
 
+## 开源地址：  
+[ Github ] : https://github.com/rnchg/AI-Productivity-Tools
+
 ## 下载地址：  
 【百度云】链接: https://pan.baidu.com/s/1CpN1k-nm-SS4nhefApodew 提取码: 1234  
 【蓝奏云】链接: https://wwwk.lanzouj.com/b04wi25uh 提取码: 1234  
